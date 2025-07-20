@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_yasg",
     "listings",
+    "django_seed",
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "alx_travel_app.wsgi.application"
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -138,3 +146,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CELERY_BROKER_URL = "amqp://localhost"
 CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = "listings.User"
